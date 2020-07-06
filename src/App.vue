@@ -1,13 +1,27 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-06 10:07:46
+ * @LastEditTime: 2020-07-06 10:15:26
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \bbb\guoye\src\App.vue
+--> 
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <Header />
+    <router-view :key="$route.fullPath"></router-view>
+    <Footer />
   </div>
 </template>
 
 <script>
+import { Header, Footer } from "@/components";
 export default {
-  name: 'App'
+  name: "App",
+  components: {
+    Header,
+    Footer,
+  },
 }
 </script>
 
