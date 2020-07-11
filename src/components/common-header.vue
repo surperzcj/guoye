@@ -28,8 +28,8 @@
           </li>
         </ul>
         <div class="islogin">
-          <div class="left">登录</div>
-          <div class="right">注册</div>
+          <div class="left" @click="$router.push('/login')">登录</div>
+          <div class="right" @click="$router.push('/register')">注册</div>
         </div>
       </div>
     </div>
@@ -45,65 +45,172 @@ export default {
         {
           name: "首页",
           nodes: [],
-          reqUrl: "/c"
+          reqUrl:{
+                path: "/"
+              },
         },
         {
           id: 1,
           name: "公司概况",
+          reqUrl:{
+                path: "/company",
+                params:'gsjj'
+              },
           nodes: [
             {
-              name: "保函验真",
+              name: "公司简介",
               nodes: [],
-              reqUrl:
-                "http://www.ccb.com/tran/WCCMainB1L1?CCB_IBSVersion=V5&SERVLET_NAME=WCCMainB1L1&TXCODE=NBH001"
-            }
+              reqUrl:{
+                path: "/company",
+                params:'gsjj'
+              }
+            },
+            {
+              name: "组织架构",
+              nodes: [],
+              reqUrl:{
+                path: "/company",
+                params:'zzjg'
+              }
+            },
+            {
+              name: "锐诚团队",
+              nodes: [],
+              reqUrl:{
+                path: "/company",
+                params:'rctd'
+              }
+            },
+            {
+              name: "企业文化",
+              nodes: [],
+              reqUrl:{
+                path: "/company",
+                params:'qywh'
+              }
+            },
           ],
-          reqUrl: "/v"
         },
         {
           id: 1,
           name: "新闻动态",
           nodes: [
             {
-              name: "保函验真",
+              name: "公司要闻",
               nodes: [],
-              reqUrl:
-                "http://www.ccb.com/tran/WCCMainB1L1?CCB_IBSVersion=V5&SERVLET_NAME=WCCMainB1L1&TXCODE=NBH001"
+              reqUrl:{
+                path: "/news",
+                params:'gsyw'
+
+              }
             },
             {
-              name: "保函验真",
+              name: "行业动态",
               nodes: [],
-              reqUrl:
-                "http://www.ccb.com/tran/WCCMainB1L1?CCB_IBSVersion=V5&SERVLET_NAME=WCCMainB1L1&TXCODE=NBH001"
+              reqUrl:{
+                path: "/news",
+                params:'hydt'
+              }
             },
-            {
-              name: "保函验真",
-              nodes: [],
-              reqUrl:
-                "http://www.ccb.com/tran/WCCMainB1L1?CCB_IBSVersion=V5&SERVLET_NAME=WCCMainB1L1&TXCODE=NBH001"
-            }
           ],
-          reqUrl: "/o"
+          reqUrl: "/news"
         },
         {
           name: "公司业绩",
-          nodes: [],
-          reqUrl: "/y"
+         
+          reqUrl:{
+                path: "/performance",
+                params:'dxyj'
+              },
+          nodes: [
+            {
+              name: "典型业绩",
+              nodes: [],
+              reqUrl:{
+                path: "/performance",
+                params:'dxyj'
+              }
+            },
+            {
+              name: "主要业绩",
+              nodes: [],
+              reqUrl:{
+                path: "/performance",
+                params:'zyyj'
+              }
+            },
+          ],
         },
         {
           name: "员工家园",
-          nodes: [],
-          reqUrl: "/e"
+          reqUrl:{
+                path: "/staff",
+                params:'tzgg'
+              },
+          nodes: [
+            {
+              name: "通知公告",
+              nodes: [],
+              reqUrl:{
+                path: "/staff",
+                params:'tzgg'
+              }
+            },
+            {
+              name: "培训专栏",
+              nodes: [],
+              reqUrl:{
+                path: "/staff",
+                params:'pxzl'
+              }
+            },
+            {
+              name: "质量体系",
+              nodes: [],
+              reqUrl:{
+                path: "/staff",
+                params:'zltx'
+              }
+            },
+            {
+              name: "业务中心",
+              nodes: [],
+              reqUrl:{
+                path: "/staff",
+                params:'ywzx'
+              }
+            },
+            {
+              name: "会议纪要",
+              nodes: [],
+              reqUrl:{
+                path: "/staff",
+                params:'hyjy'
+              }
+            },
+            {
+              name: "员工风采",
+              nodes: [],
+              reqUrl:{
+                path: "/staff",
+                params:'ygfc'
+              }
+            },
+          ],
         },
         {
           name: "人才招聘",
           nodes: [],
-          reqUrl: "/w"
+          reqUrl:{
+                path: "/job"
+              }
         },
         {
           name: "联系我们",
           nodes: [],
-          reqUrl: "/q"
+          reqUrl:{
+                path: "/connection"
+              }
         }
       ]
     };
@@ -112,7 +219,14 @@ export default {
     isCurrentPath(index) {
       this.show = index;
     },
-    goto() {}
+    goto(url) {
+      this.$router.push({
+        path:url.path,
+        query:{
+          type:url.params
+        }
+      })
+    }
   }
 };
 </script>
@@ -193,6 +307,7 @@ export default {
     }
     .islogin {
       display: flex;
+      cursor: pointer;
       .left {
         min-width: 69px;
         line-height: 36px;

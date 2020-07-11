@@ -8,20 +8,14 @@
 --> 
 <template>
   <div id="app">
-    <Header />
     <router-view :key="$route.fullPath"></router-view>
-    <Footer />
   </div>
 </template>
 
 <script>
-import { Header, Footer } from "@/components";
 export default {
   name: "App",
-  components: {
-    Header,
-    Footer,
-  },
+  
 }
 </script>
 
