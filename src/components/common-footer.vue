@@ -23,6 +23,7 @@
           </ul>
         </div>
         <div class="content_l">
+          <span>员工家园</span>
           <img src="../assets/image/rc.png" alt />
         </div>
       </div>
@@ -45,7 +46,16 @@
       justify-content: space-between;
       padding: 64px 120px 0px 120px;
       .content_l {
+        // display: flex;
+        
+        >span{
+
+          font-size: 20px;
+          margin-right: 112px;
+          color: #fff;
+        }
         > img {
+          vertical-align: text-top;
           max-width: 100px;
         }
       }

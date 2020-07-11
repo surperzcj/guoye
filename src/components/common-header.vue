@@ -134,7 +134,7 @@ export default {
       display: flex;
       line-height: 42px;
       > li {
-        margin:0px 50px;
+        margin-right: 57px;
         padding-bottom: 3px;
         position: relative;
         height:42px;
