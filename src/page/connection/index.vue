@@ -9,7 +9,7 @@
 <template>
   <div>
     <bannerbg></bannerbg>
-    <div>公司简介</div>
+    <div>connection</div>
   </div>
 </template>
 <script>

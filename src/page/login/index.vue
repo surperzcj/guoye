@@ -8,15 +8,12 @@
 --> 
 <template>
   <div>
-    <bannerbg></bannerbg>
-    <div>公司简介</div>
+    login
   </div>
 </template>
 <script>
-import bannerbg from "@/components/banner_bg";
 export default {
   components: {
-    bannerbg
   },
   data() {
     return {};

@@ -7,19 +7,18 @@
  * @FilePath: \bbb\guoye\src\page\home\index.vue
 --> 
 <template>
-  <div>
-    <bannerbg></bannerbg>
-    <div>公司简介</div>
+  <div style="font-size:100px">
+      hyjy
   </div>
 </template>
 <script>
-import bannerbg from "@/components/banner_bg";
 export default {
-  components: {
-    bannerbg
-  },
+
   data() {
     return {};
   }
 };
 </script>
+<style lang="scss" scoped>
+ 
+</style>

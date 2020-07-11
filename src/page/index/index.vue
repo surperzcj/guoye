@@ -8,15 +8,17 @@
 --> 
 <template>
   <div>
-    <bannerbg></bannerbg>
-    <div>公司简介</div>
+    <Header />
+    <router-view :key="$route.fullPath"></router-view>
+    <Footer />
   </div>
 </template>
 <script>
-import bannerbg from "@/components/banner_bg";
+import { Header, Footer } from "@/components";
 export default {
   components: {
-    bannerbg
+    Header,
+    Footer,
   },
   data() {
     return {};
