@@ -8,5 +8,17 @@
 --> 
 <template>
   <div>
+    <bannerbg></bannerbg>
   </div>
 </template>
+<script>
+import bannerbg from "../../components/banner_bg";
+export default {
+  components: {
+    bannerbg
+  },
+  data() {
+    return {};
+  }
+};
+</script>
