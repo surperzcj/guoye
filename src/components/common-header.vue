@@ -14,7 +14,7 @@
             :key="index"
           >
             <span @click="goto(item.reqUrl)">{{item.name}}</span>
-            
+
             <div class="inner-link" v-if="item.nodes.length>0" v-show="hideNavLink==false">
               <ul>
                 <li
@@ -40,7 +40,7 @@ export default {
   data() {
     return {
       hideNavLink: false,
-      show:0,
+      show: 0,
       navList: [
         {
           name: "首页",
@@ -110,7 +110,7 @@ export default {
   },
   methods: {
     isCurrentPath(index) {
-      this.show=index
+      this.show = index;
     },
     goto() {}
   }
@@ -124,29 +124,70 @@ export default {
   align-items: center;
   justify-content: space-between;
   background-color: #fff;
-.pointer{
-  cursor:pointer
-}
+  .pointer {
+    cursor: pointer;
+  }
   .header_nav {
     display: flex;
     align-items: center;
     > ul {
       display: flex;
+      line-height: 42px;
       > li {
-        margin-right: 56px;
-        &:active{
-          >span {
-            color:#3762FF;
-            border: 1px solid #3762FF;
-          };
+        margin:0px 50px;
+        padding-bottom: 3px;
+        position: relative;
+        height:42px;
+        &:hover{
+         >span{
+            color: #3762ff;
+         }
+         .inner-link{
+           display: block;
+         }
+
         }
         > span {
           color: #666666;
           font-size: 14px;
-          letter-spacing:2px;
+          letter-spacing: 2px;
         }
-        .inner-link{
+        .inner-link {
           display: none;
+          position: absolute;
+          min-width: 127px;
+          z-index: 999;
+          background: rgba(255, 255, 255, 1);
+          box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.14);
+          top: 40px;
+          left: -30px;
+          &:hover{
+            display: block;
+          }
+          > ul {
+            text-align: center;
+            >li{
+              line-height: 40px;
+              padding: 0px !important;
+              color: #666666;
+              font-size: 14px;
+              &:hover{
+                background-color: #3762ff;
+                color: #fff;
+              }
+              
+            }
+          }
+          //
+        }
+      }
+      li.active {
+         border-bottom: 1px solid #3762ff;
+        > span {
+          color: #3762ff;
+         
+          // line-height: 22px;
+          padding-bottom: 3px;
         }
       }
     }
@@ -174,5 +215,4 @@ export default {
     }
   }
 }
-
 </style>
