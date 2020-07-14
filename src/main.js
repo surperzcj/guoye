@@ -6,6 +6,8 @@ import router from './router'
 import 'lib-flexible'
 Vue.config.productionTip = false
 import './utils/flexible'
+
+// import 'iview/dist/styles/iview.css'
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

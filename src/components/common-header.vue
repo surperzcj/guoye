@@ -14,6 +14,7 @@
             :key="index"
           >
             <span @click="goto(item.reqUrl)">{{item.name}}</span>
+            <img src="../assets/image/down.png" alt="" v-if="item.nodes.length>0">
 
             <div class="inner-link" v-if="item.nodes.length>0" v-show="hideNavLink==false">
               <ul>
@@ -241,6 +242,11 @@ export default {
   .pointer {
     cursor: pointer;
   }
+  .logo{
+    >img{
+      max-height: 38px;
+    }
+  }
   .header_nav {
     display: flex;
     align-items: center;
@@ -265,6 +271,10 @@ export default {
           color: #666666;
           font-size: 14px;
           letter-spacing: 2px;
+        }
+        >img{
+          height: 6px;
+          margin-left: 6px;
         }
         .inner-link {
           display: none;

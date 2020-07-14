@@ -57,6 +57,7 @@
         > img {
           vertical-align: text-top;
           max-width: 100px;
+          max-height: 62px;
         }
       }
       .list {
