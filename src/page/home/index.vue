@@ -22,9 +22,39 @@
         <div class="demo-carousel">4</div>
       </CarouselItem>
     </Carousel>-->
+    <!-- banner部分 -->
     <div class="banner">
-      <img src="../../assets/image/banner.png" alt="">
+      <img src="../../assets/image/banner.png"
+           alt="">
     </div>
+    <!-- 新闻咨询 -->
+    <div class="news">
+      <div class="title">
+        <span class="left">
+          <h2>新闻资讯</h2>
+        </span>
+        <span class="right">
+          more+
+        </span>
+      </div>
+      <div class="content">
+        <div class="news-content-left">
+          <div class="news-image-title-big">
+            <img src="https://iph.href.lu/580x250"
+                 alt="newsImage01">
+            <div class="news-image-date-big">09-01</div>
+          </div>
+          <div>
+            <h3>不要再纠缠于“长期”和“短期”，很多时候长期已经成为了现在不…</h3>
+            <div>当你有一个傻瓜时，你会很痛苦；你有 50 个傻瓜是最幸福的，吃饭、睡觉、上厕所排着队去的；你有一个聪明人时很带劲，你有 50 个聪明人实际上是最痛苦的，谁都不服谁。我在公司里的…</div>
+          </div>
+        </div>
+        <div class="news-content-right">
+          右侧部分
+        </div>
+      </div>
+    </div>
+    <!-- 简介部分 -->
     <div class="synopsis">
       <div class="left">
         <h2>公司简介</h2>
@@ -32,35 +62,58 @@
         <span>公司依靠高素质专业技术人员组成的项目团队，致力于低成本、高效率的品质服务，坚持“技术先进、方法科学、产品优质、服务满意”的质量方针，使客户工程项目得到全面的质量和进度…</span>
       </div>
       <div class="right">
-        <img src="../../assets/image/synopsis.png" alt />
+        <img src="../../assets/image/synopsis.png"
+             alt />
+      </div>
+    </div>
+    <!-- 项目案例部分 -->
+    <div class="cases">
+      <div class="title">
+        <span class="left">
+          <h2>项目案例</h2>
+        </span>
+        <span class="right">
+          more+
+        </span>
+      </div>
+      <div class="content">
+        <div class="left">
+          左侧部分
+        </div>
+        <div class="center">
+          中间部分
+        </div>
+        <div class="right">
+          右侧部分
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
 // import { CarouselItem } from "view-design";
-// import {CarouselItem} from 'view-design';
-// import Vue from 'vue'
-// Vue.component('CarouselItem', CarouselItem);
+// import Vue from "vue";
+// Vue.component("CarouselItem", CarouselItem);
 export default {
   components: {
     // CarouselItem
-    
   },
 
   data() {
     return {
-      value1: 0
+      // value1: 0
     };
   }
 };
 </script>
 <style lang="scss" scoped>
-.banner{
-  >img{
+// banner部分
+.banner {
+  > img {
     max-height: 600px;
   }
 }
+// 简介部分
 .synopsis {
   padding: 0px 120px;
   display: flex;
@@ -68,11 +121,10 @@ export default {
   justify-content: space-between;
   .left {
     padding-right: 49px;
-    >h2{
+    > h2 {
       margin-bottom: 24px;
     }
     > span {
-    
       color: #666666;
       display: inline-block;
       font-size: 14px;
@@ -83,6 +135,61 @@ export default {
   .right {
     > img {
       max-height: 195px;
+    }
+  }
+}
+
+.news,
+.cases {
+  padding: 0px 120px;
+  margin-top: 72px;
+  .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    .right {
+      width: 64px;
+      height: 24px;
+      text-align: center;
+      font: 14px PingFangSC-Regular, PingFang SC;
+      color: #cacaca;
+      border-radius: 16px;
+      border: 1px solid #cacaca;
+    }
+  }
+  .content {
+    display: flex;
+    justify-content: space-between;
+    .news-content-left {
+      width: 580px;
+      height: 382px;
+      background-color: #f3f3f4;
+    }
+    .news-content-right {
+      width: 580px;
+      height: 382px;
+      background-color: green;
+    }
+    .news-image-title-big {
+      position: relative;
+      height: 250px;
+      img {
+        width: 580px;
+        height: 250px;
+      }
+      .news-image-date-big {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 87px;
+        height: 49px;
+        background-color: #3762ff;
+        color: #ffffff;
+        text-align: center;
+        line-height: 49px;
+        font: bold 22px/49px DINPro-Bold, DINPro;
+      }
     }
   }
 }
