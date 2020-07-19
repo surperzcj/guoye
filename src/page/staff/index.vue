@@ -8,19 +8,31 @@
 --> 
 <template>
   <div>
-    <div>
-      <div class="block" @click="currentTabComponent = 'tzgg'">通知公告</div>
-      <div class="block" @click="currentTabComponent = 'pxzl'">培训专栏</div>
-      <div class="block" @click="currentTabComponent = 'zltx'">质量体系</div>
-      <div class="block" @click="currentTabComponent = 'ywzx'">业务中心</div>
-      <div class="block" @click="currentTabComponent = 'hyjy'">会议纪要</div>
-      <div class="block" @click="currentTabComponent = 'ygfc'">员工风采</div>
+    <div class="banner">
+      <img src="../../assets/image/staff.png" alt />
+      <span>首页 > 员工家园</span>
     </div>
-    
-    <div>下面是详情</div>
-    <keep-alive>
-      <component v-bind:is="currentTabComponent"></component>
-    </keep-alive>
+    <div class="content">
+      <div class="left">
+        <div class="title">
+          <h2>员工家园</h2>
+          <span>Staff Home</span>
+        </div>
+        <div class="list">
+          <div class="block" :class="{'active':currentTabComponent=='tzgg'}" @click="currentTabComponent = 'tzgg'"><span>通知公告</span><span>></span></div>
+          <div class="block" :class="{'active':currentTabComponent=='pxzl'}" @click="currentTabComponent = 'pxzl'"><span>培训专栏</span><span>></span></div>
+          <div class="block" :class="{'active':currentTabComponent=='zltx'}" @click="currentTabComponent = 'zltx'"><span>质量体系</span><span>></span></div>
+          <div class="block" :class="{'active':currentTabComponent=='ywzx'}" @click="currentTabComponent = 'ywzx'"><span>业务中心</span><span>></span></div>
+          <div class="block" :class="{'active':currentTabComponent=='hyjy'}" @click="currentTabComponent = 'hyjy'"><span>会议纪要</span><span>></span></div>
+          <div class="block" :class="{'active':currentTabComponent=='ygfc'}" @click="currentTabComponent = 'ygfc'"><span>员工风采</span><span>></span></div>
+        </div>
+      </div>
+      <div class="right">
+        <keep-alive>
+          <component v-bind:is="currentTabComponent"></component>
+        </keep-alive>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -37,25 +49,74 @@ export default {
     zltx,
     ywzx,
     hyjy,
-    ygfc,
+    ygfc
   },
   data() {
     return {
-      currentTabComponent:'gsyw'
+      currentTabComponent: "gsyw"
     };
   },
-  created(){
-    this.currentTabComponent = this.$route.query.type
+  created() {
+    this.currentTabComponent = this.$route.query.type;
   }
 };
 </script>
 <style lang="scss" scoped>
-  .block{
-    width:200px;
-    height:50px;
-    display:inline-block;
-    background:blue;
-    color:#fff;
-    cursor: pointer;
+.banner {
+  > img {
+    max-height: 400px;
+    min-height: 400px;
+    width: 100%;
+    background-size: cover;
   }
+  > span {
+    line-height: 40px;
+    border-bottom: 1px solid #f3f3f4;
+    color: #666666;
+    font-size: 10px;
+    display: flex;
+    padding-right: 120px;
+    justify-content: flex-end;
+  }
+}
+.content {
+  display: flex;
+  margin-top: 69px;
+  padding: 0px 120px;
+  justify-content: space-between;
+  .left {
+    width: 20%;
+    border-right: 1px solid #f3f3f4;
+    .title {
+      > h2 {
+        color: #010411;
+        font-size: 32px;
+      }
+      > p {
+        color: #666666;
+        font-size: 16px;
+      }
+    }
+    .list {
+      display: flex;
+      flex-direction: column;
+      margin-top: 32px;
+      .block {
+        line-height: 70px;
+        height: 70px;
+        padding: 0px 10px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .active {
+        background: url("../../assets/image/select.png") no-repeat center center;
+        background-size: 100% 100%;
+      }
+    }
+  }
+  .right {
+    flex: 1;
+    padding-left: 100px;
+  }
+}
 </style>

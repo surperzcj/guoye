@@ -8,17 +8,29 @@
 --> 
 <template>
   <div>
-    <div>
-      <div class="block" @click="currentTabComponent = 'gsjj'">公司简介</div>
-      <div class="block" @click="currentTabComponent = 'zzjg'">组织架构</div>
-      <div class="block" @click="currentTabComponent = 'rctd'">锐诚团队</div>
-      <div class="block" @click="currentTabComponent = 'qywh'">企业文化</div>
+    <div class="banner">
+      <img src="../../assets/image/company.png" alt />
+      <span>首页 > 公司概述 > 公司简介</span>
     </div>
-    
-    <div>下面是详情</div>
-    <keep-alive>
-      <component v-bind:is="currentTabComponent"></component>
-    </keep-alive>
+    <div class="content">
+      <div class="left">
+        <div class="title">
+          <h2>公司概况</h2>
+          <span>Company Overview</span>
+        </div>
+    <div class="list">
+          <div class="block" :class="{'active':currentTabComponent=='gsjj'}" @click="currentTabComponent = 'gsjj'"><span>公司简介</span><span>></span></div>
+        <div class="block" :class="{'active':currentTabComponent=='zzjg'}" @click="currentTabComponent = 'zzjg'"><span>组织架构</span><span>></span></div>
+        <div class="block" :class="{'active':currentTabComponent=='rctd'}" @click="currentTabComponent = 'rctd'"><span>锐诚团队</span><span>></span></div>
+        <div class="block" :class="{'active':currentTabComponent=='qywh'}" @click="currentTabComponent = 'qywh'"><span>企业文化</span><span>></span></div>
+    </div>
+      </div>
+      <div class="right">
+        <keep-alive>
+          <component v-bind:is="currentTabComponent"></component>
+        </keep-alive>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -28,25 +40,78 @@ import rctd from "./components/rctd";
 import qywh from "./components/qywh";
 export default {
   components: {
-    gsjj,zzjg,rctd,qywh
+    gsjj,
+    zzjg,
+    rctd,
+    qywh
   },
   data() {
     return {
-      currentTabComponent:'gsyw'
+      currentTabComponent: "gsyw"
     };
   },
-  created(){
-    this.currentTabComponent = this.$route.query.type
+  created() {
+    this.currentTabComponent = this.$route.query.type;
   }
 };
 </script>
 <style lang="scss" scoped>
-  .block{
-    width:200px;
-    height:50px;
-    display:inline-block;
-    background:blue;
-    color:#fff;
-    cursor: pointer;
+
+.banner {
+  > img {
+    max-height: 400px;
+    min-height: 400px;
+    width: 100%;
+    background-size: cover;
   }
+  > span {
+    line-height: 40px;
+    border-bottom: 1px solid #f3f3f4;
+    color: #666666;
+    font-size: 10px;
+    display: flex;
+    padding-right: 120px;
+    justify-content: flex-end;
+  }
+}
+.content {
+  display: flex;
+  margin-top: 69px;
+  padding: 0px 120px;
+  justify-content: space-between;
+  .left{
+    width: 20%;
+    border-right: 1px solid #F3F3F4;
+    .title{
+      >h2{
+        color: #010411;
+        font-size: 32px;
+      }
+      >p{
+        color: #666666;
+        font-size: 16px;
+      }
+    }
+    .list{
+      display: flex;
+      flex-direction: column;
+      margin-top: 32px;
+      .block{
+        line-height: 70px;
+        height: 70px;
+        padding: 0px 10px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .active{
+        background: url('../../assets/image/select.png') no-repeat center center;
+        background-size: 100% 100%;
+      }
+    }
+  }
+  .right{
+    flex: 1;
+    padding-left: 100px;
+  }
+}
 </style>
