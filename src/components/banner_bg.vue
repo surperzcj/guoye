@@ -14,7 +14,7 @@ export default {
     type: {
       type: Number,
       default: null
-    }
+    },
   }
 };
 </script>
