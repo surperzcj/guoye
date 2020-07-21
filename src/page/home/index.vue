@@ -128,6 +128,10 @@ export default {
     return {
       // value1: 0
     };
+  },
+  created(){
+  },
+  methods:{
   }
 };
 </script>

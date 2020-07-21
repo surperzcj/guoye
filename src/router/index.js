@@ -18,7 +18,7 @@ import performance from '@/page/performance'
 import staff from '@/page/staff'
 import job from '@/page/job'
 import connection from '@/page/connection'
-
+import newsdetail from '@/page/news/detail'
 Vue.use(Router)
 
 export default new Router({
@@ -56,7 +56,10 @@ export default new Router({
         {
           path:'connection',
           component:connection
-        },
+        },{
+          path:'newsdetail',
+          component:newsdetail
+        }
       ]
     },
     {

@@ -12,7 +12,7 @@
       <img src="../../assets/image/performance.png" alt />
       <span>首页 > 公司业绩 > 典型业绩</span>
     </div>
-    <div class="content">
+    <div class="content_css">
       <div class="left">
         <div class="title">
           <h2>公司业绩</h2>
@@ -67,7 +67,7 @@ export default {
     justify-content: flex-end;
   }
 }
-.content {
+.content_css {
   display: flex;
   margin-top: 69px;
   padding: 0px 120px;

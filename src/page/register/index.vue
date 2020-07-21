@@ -8,7 +8,9 @@
 --> 
 <template>
   <div>
-    register
+    <div class="heard">
+      <img src="../../assets/image/logo.png" alt="">
+    </div>
   </div>
 </template>
 <script>
@@ -16,7 +18,23 @@ export default {
   components: {
   },
   data() {
-    return {};
+    return {
+
+    };
   }
 };
 </script>
+<style lang="scss" scoped>
+.heard{
+  line-height: 80px;
+  background-color: #fff;
+  padding-left: 120px;
+  display: flex;
+  align-items: center;
+  height: 80px;
+  >img{
+    max-height: 38px;
+  }
+}
+
+</style>

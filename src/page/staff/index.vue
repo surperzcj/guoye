@@ -12,7 +12,7 @@
       <img src="../../assets/image/staff.png" alt />
       <span>首页 > 员工家园</span>
     </div>
-    <div class="content">
+    <div class="content_css">
       <div class="left">
         <div class="title">
           <h2>员工家园</h2>
@@ -79,7 +79,7 @@ export default {
     justify-content: flex-end;
   }
 }
-.content {
+.content_css {
   display: flex;
   margin-top: 69px;
   padding: 0px 120px;

@@ -12,10 +12,10 @@
       <img src="../../assets/image/new_banner.png" alt />
       <span>首页 > 新闻动态 > 公司要闻</span>
     </div>
-    <div class="content">
+    <div class="content_css">
       <div class="left">
         <div class="title">
-          <h2>公司概况</h2>
+          <h2>新闻动态</h2>
           <span>Company Overview</span>
         </div>
         <div class="list">
@@ -68,7 +68,7 @@ export default {
     justify-content: flex-end;
   }
 }
-.content {
+.content_css {
   display: flex;
   margin-top: 69px;
   padding: 0px 120px;

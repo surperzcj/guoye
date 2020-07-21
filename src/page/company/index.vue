@@ -12,18 +12,46 @@
       <img src="../../assets/image/company.png" alt />
       <span>首页 > 公司概述 > 公司简介</span>
     </div>
-    <div class="content">
+    <div class="content_css">
       <div class="left">
         <div class="title">
           <h2>公司概况</h2>
           <span>Company Overview</span>
         </div>
-    <div class="list">
-          <div class="block" :class="{'active':currentTabComponent=='gsjj'}" @click="currentTabComponent = 'gsjj'"><span>公司简介</span><span>></span></div>
-        <div class="block" :class="{'active':currentTabComponent=='zzjg'}" @click="currentTabComponent = 'zzjg'"><span>组织架构</span><span>></span></div>
-        <div class="block" :class="{'active':currentTabComponent=='rctd'}" @click="currentTabComponent = 'rctd'"><span>锐诚团队</span><span>></span></div>
-        <div class="block" :class="{'active':currentTabComponent=='qywh'}" @click="currentTabComponent = 'qywh'"><span>企业文化</span><span>></span></div>
-    </div>
+        <div class="list">
+          <div
+            class="block"
+            :class="{'active':currentTabComponent=='gsjj'}"
+            @click="currentTabComponent = 'gsjj'"
+          >
+            <span>公司简介</span>
+            <img src="../../assets/image/right.png" alt />
+          </div>
+          <div
+            class="block"
+            :class="{'active':currentTabComponent=='zzjg'}"
+            @click="currentTabComponent = 'zzjg'"
+          >
+            <span>组织架构</span>
+            <img src="../../assets/image/right.png" alt />
+          </div>
+          <div
+            class="block"
+            :class="{'active':currentTabComponent=='rctd'}"
+            @click="currentTabComponent = 'rctd'"
+          >
+            <span>锐诚团队</span>
+            <img src="../../assets/image/right.png" alt />
+          </div>
+          <div
+            class="block"
+            :class="{'active':currentTabComponent=='qywh'}"
+            @click="currentTabComponent = 'qywh'"
+          >
+            <span>企业文化</span>
+            <img src="../../assets/image/right.png" alt />
+          </div>
+        </div>
       </div>
       <div class="right">
         <keep-alive>
@@ -56,7 +84,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-
 .banner {
   > img {
     max-height: 400px;
@@ -74,42 +101,54 @@ export default {
     justify-content: flex-end;
   }
 }
-.content {
+.content_css {
   display: flex;
   margin-top: 69px;
   padding: 0px 120px;
   justify-content: space-between;
-  .left{
+  .left {
     width: 20%;
-    border-right: 1px solid #F3F3F4;
-    .title{
-      >h2{
+    border-right: 1px solid #f3f3f4;
+    .title {
+      > h2 {
         color: #010411;
         font-size: 32px;
       }
-      >p{
+      > p {
         color: #666666;
         font-size: 16px;
       }
     }
-    .list{
+    .list {
       display: flex;
       flex-direction: column;
       margin-top: 32px;
-      .block{
+      .block {
         line-height: 70px;
         height: 70px;
         padding: 0px 10px;
         display: flex;
+        align-items: center;
         justify-content: space-between;
+        > img {
+          width: 10px;
+        }
+        > span {
+          color: #333333;
+          font-size: 18px;
+        }
       }
-      .active{
-        background: url('../../assets/image/select.png') no-repeat center center;
+      .active {
+        background: url("../../assets/image/select.png") no-repeat center center;
         background-size: 100% 100%;
+        > span {
+          color: #fff;
+          font-size: 24px;
+        }
       }
     }
   }
-  .right{
+  .right {
     flex: 1;
     padding-left: 100px;
   }

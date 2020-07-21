@@ -17,33 +17,9 @@
         <h2>人才招聘</h2>
         <span>Recruitment</span>
       </div>
-      <div class="job_list">
+      <div class="job_list" v-for="(item,index) in list" :key="index">
         <div class="top">
-          <span>项目经理   工作地（北京） 招聘人 （3人）</span>
-          <span>2020-05-22</span>
-        </div>
-        <div class="content">
-          <span>受队光每她海果转放调毛照农书王周家验步素反传级度半却日合龙美太圆格方长活石拉元先存小织走性真安市小维写我记后只除济府着前山米那受容基干斗按在节起经特光如今传。是取成规又才元论选花压维油按少关科族叫条处现米红大报。</span>
-        </div>
-        <div class="btn">
-          <span>查看详情</span>
-        </div>
-      </div>
-          <div class="job_list">
-        <div class="top">
-          <span>项目经理   工作地（北京） 招聘人 （3人）</span>
-          <span>2020-05-22</span>
-        </div>
-        <div class="content">
-          <span>受队光每她海果转放调毛照农书王周家验步素反传级度半却日合龙美太圆格方长活石拉元先存小织走性真安市小维写我记后只除济府着前山米那受容基干斗按在节起经特光如今传。是取成规又才元论选花压维油按少关科族叫条处现米红大报。</span>
-        </div>
-        <div class="btn">
-          <span>查看详情</span>
-        </div>
-      </div>
-          <div class="job_list">
-        <div class="top">
-          <span>项目经理   工作地（北京） 招聘人 （3人）</span>
+          <span>项目经理 工作地（北京） 招聘人 （3人）</span>
           <span>2020-05-22</span>
         </div>
         <div class="content">
@@ -59,7 +35,20 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      list:[]
+    };
+  },
+  methods: {
+    async recruitmentlist() {
+      let data = await this.$api.recruitmentlist();
+      if (data.msg == "success") {
+        this.list = data.data;
+      }
+    }
+  },
+  created() {
+    this.recruitmentlist();
   }
 };
 </script>
@@ -81,45 +70,44 @@ export default {
     justify-content: flex-end;
   }
 }
-.job_content{
+.job_content {
   margin-top: 69px;
   padding: 0px 120px;
-  
-  .job_title{
+
+  .job_title {
     text-align: center;
-    >h2{
+    > h2 {
       color: #010411;
       font-size: 32px;
-
     }
-    >span{
+    > span {
       color: #666666;
       font-size: 16px;
     }
   }
-  .job_list{
+  .job_list {
     padding: 20px 16px;
-    border-bottom: 1px solid #CACACA;
-    &:hover{
-      background-color: #F3F3F4;
+    border-bottom: 1px solid #cacaca;
+    &:hover {
+      background-color: #f3f3f4;
     }
-    .top{
+    .top {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      >span{
+      > span {
         color: #010411;
         font-size: 18px;
-        &:nth-child(2){
+        &:nth-child(2) {
           color: #999;
         }
-        &:nth-child(1){
+        &:nth-child(1) {
           font-weight: bold;
         }
       }
     }
-    .content{
-      >span{
+    .content {
+      > span {
         color: #999999;
         font-size: 14px;
         line-height: 24px;
@@ -127,18 +115,18 @@ export default {
         display: inline-block;
       }
     }
-    .btn{
+    .btn {
       display: flex;
       justify-content: flex-end;
-      >span{
+      > span {
         display: inline-block;
         line-height: 32px;
-        color: #FFFFFF;
+        color: #ffffff;
         font-size: 12px;
         padding: 0px 10px;
-        background:rgba(55,98,255,1);
-border-radius:4px;
-cursor: pointer;
+        background: rgba(55, 98, 255, 1);
+        border-radius: 4px;
+        cursor: pointer;
       }
     }
   }
