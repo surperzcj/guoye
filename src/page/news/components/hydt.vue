@@ -10,7 +10,7 @@
   <div>
     <div class="newslist" v-for="(item,index) in list" :key="index">
       <div class="left_img">
-        <img :src="item.image" alt />
+        <img :src="image_url+item.image" alt />
       </div>
       <div class="right_content">
         <div class="title">
@@ -43,7 +43,8 @@ export default {
       size: 5,
       current: 1,
       total: null,
-      list: []
+      list: [],
+      image_url:''
     };
   },
   filters: {
@@ -78,8 +79,6 @@ export default {
     },
     // 获取首页轮播图数据
     async news() {
-      // //console.log(this.$api);
-      // let data = await this.$http.get('/xdPlant/1');
       let data = await this.$api.news({
         type: 2,
         list: this.size,
@@ -87,6 +86,7 @@ export default {
       });
       if (data.msg == "success") {
         this.list = data.data.list;
+        this.image_url=data.data.image_url+'/'
         this.total = data.data.count;
       }
       console.log(this.total);

@@ -18,6 +18,10 @@ class Https {
   contact_us = (params) => HttpUtils.post('/contact-us', params) //联系我们
   recruitment_details = (params) => HttpUtils.post('/recruitment-details', params) //招聘详情
   employees_home = (params) => HttpUtils.post('/employees_home', params) //员工家园
+  performance_details = (params) => HttpUtils.post('/performance-details', params) //业绩详情
+  employeesdetails = (params) => HttpUtils.post('/employees_details', params) //元工家园详情
+ 
+  
  
   
 }

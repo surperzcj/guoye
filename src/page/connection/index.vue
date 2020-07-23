@@ -32,7 +32,6 @@
           <span>地址：{{item.address}}</span>
         </div>
       </div>
-    </div>>
     </div>
   </div>
 </template>

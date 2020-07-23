@@ -5,7 +5,7 @@
     </div>
     <div class="new_detail">
       <div class="title">
-        <span>{{detail.operating_post}}   工作地点（{{detail.address}}） 招聘人数（{{detail.num}}人）</span>
+        <span>{{detail.title}}</span>
       </div>
       <div class="content" v-html="detail.text">
         {{detail.text}}
@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     async detail_new(id) {
-      let data = await this.$api.recruitment_details({
+      let data = await this.$api.employeesdetails({
         id: id
       });
       if (data.msg == "success") {

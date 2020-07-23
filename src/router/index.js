@@ -17,6 +17,7 @@ import news from '@/page/news'
 import performance from '@/page/performance'
 import performancedetail from '@/page/performance/detail'
 import staff from '@/page/staff'
+import staffdetail from '@/page/staff/detail'
 import job from '@/page/job'
 import jobdetail from '@/page/job/detail'
 import connection from '@/page/connection'
@@ -56,6 +57,11 @@ export default new Router({
           path:'staff',
           component:staff
         },
+        {
+          path:'staffdetail',
+          component:staffdetail
+        },
+        
         {
           path:'job',
           component:job

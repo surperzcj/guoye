@@ -11,7 +11,7 @@
     <div class="performance_list">
       <ul>
         <li v-for="(item,index) in list" :key="index">
-          <img class="top_img" :src="item.image" alt />
+          <img class="top_img" :src="image_url+item.image" alt />
           <div class="bottom" @click="godetail(item.id)">
             <span>{{item.title}}</span>
             <img src="../../../assets/image/rightarrow.png" alt />
@@ -40,6 +40,7 @@ export default {
       pageCount: 5,
       size: 5,
       current: 1,
+      image_url:''
     };
   },
   methods: {
@@ -63,6 +64,7 @@ export default {
       });
       if (data.msg == "success") {
         console.log(data);
+        this.image_url=data.data.image_url+'/'
         this.list = data.data.list;
         this.total = data.data.count;
       }
@@ -94,7 +96,7 @@ export default {
       width: 30%;
       .top_img {
         width: 100%;
-        height: 180px;
+        max-height: 180px;
       }
       .bottom {
         display: flex;

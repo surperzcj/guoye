@@ -25,7 +25,7 @@
             @click="currentTabComponent = 'gsjj'"
           >
             <span>公司简介</span>
-            <img src="../../assets/image/right.png" alt />
+            <span>></span>
           </div>
           <div
             class="block"
@@ -33,7 +33,7 @@
             @click="currentTabComponent = 'zzjg'"
           >
             <span>组织架构</span>
-            <img src="../../assets/image/right.png" alt />
+            <span>></span>
           </div>
           <div
             class="block"
@@ -41,7 +41,7 @@
             @click="currentTabComponent = 'rctd'"
           >
             <span>锐诚团队</span>
-            <img src="../../assets/image/right.png" alt />
+            <span>></span>
           </div>
           <div
             class="block"
@@ -49,7 +49,7 @@
             @click="currentTabComponent = 'qywh'"
           >
             <span>企业文化</span>
-            <img src="../../assets/image/right.png" alt />
+            <span>></span>
           </div>
         </div>
       </div>

@@ -12,7 +12,7 @@
     <div class="banner">
       <el-carousel direction="horizontal">
         <el-carousel-item v-for="(item,index) in detail.slide_show" :key="index">
-          <img @click="golink(item.link)" :src="item.image" alt />
+          <img @click="golink(item.link)" :src="image_url+item.image" alt />
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -22,10 +22,9 @@
       <div class="left">
         <h2>公司简介</h2>
         <span>{{detail.company_profile.synopsis}}</span>
-
       </div>
       <div class="right">
-        <img src="../../assets/image/synopsis.png" alt />
+        <img :src="image_url+detail.company_profile.image" alt />
       </div>
     </div>
     <!-- 新闻咨询 -->
@@ -37,46 +36,31 @@
         <span class="right">more+</span>
       </div>
       <div class="content">
-        <div class="news-content-left">
+        <div class="news-content-left" v-for="(item,index) in news_list1" :key="index+'aa'">
           <div class="news-image-title-big">
-            <img src="https://iph.href.lu/580x250" alt="newsImage01" />
-            <div class="news-image-date-big">09-01</div>
+            <img :src="image_url+item.image" />
+            <div class="news-image-date-big">{{item.created_at|formatDate}}</div>
           </div>
           <div class="news-image-title">
-            <h3>不要再纠缠于“长期”和“短期”，很多时候长期已经成为了现在不…</h3>
-            <div>当你有一个傻瓜时，你会很痛苦；你有 50 个傻瓜是最幸福的，吃饭、睡觉、上厕所排着队去的；你有一个聪明人时很带劲，你有 50 个聪明人实际上是最痛苦的，谁都不服谁。我在公司里的…</div>
+            <h3>{{item.title}}</h3>
+            <div>{{item.synopsis}}</div>
           </div>
         </div>
         <div class="news-content-right">
           <div class="right-top">
-            <div class="news-image-top-big">
-              <img src="https://iph.href.lu/580x250" alt="newsImage01" />
-              <div class="news-image-date-big">09-01</div>
+            <div class="news-image-top-big" v-for="(item,index) in news_list2" :key="index+'bb'">
+              <img :src="image_url+item.image" />
+              <div class="news-image-date-big">{{item.created_at|formatDate}}</div>
               <div class="news-title">
-                <h3>不要再纠缠于“长期”和“短期”，很多时候长期已经成为了现在不…</h3>
-              </div>
-            </div>
-            <div class="news-image-top-big">
-              <img src="https://iph.href.lu/580x250" alt="newsImage01" />
-              <div class="news-image-date-big">09-01</div>
-              <div class="news-title">
-                <h3>不要再纠缠于“长期”和“短期”，很多时候长期已经成为了现在不…</h3>
+                <h3>{{item.title}}</h3>
               </div>
             </div>
           </div>
           <div class="right_list">
             <ul>
-              <li>
-                <span class="new-left">刚工作的几年比谁更踏实，再过几年比谁更激情</span>
-                <span>2020-06-26</span>
-              </li>
-              <li>
-                <span class="new-left">刚工作的几年比谁更踏实，再过几年比谁更激情</span>
-                <span>2020-06-26</span>
-              </li>
-              <li>
-                <span class="new-left">刚工作的几年比谁更踏实，再过几年比谁更激情</span>
-                <span>2020-06-26</span>
+              <li v-for="(item,index) in news_list3" :key="index+'cc'">
+                <span class="new-left">{{item.title}}</span>
+                <span>{{item.created_at|formatDates}}</span>
               </li>
             </ul>
           </div>
@@ -92,14 +76,8 @@
         <span class="right">more+</span>
       </div>
       <div class="cases_content">
-        <div class="left">
-          <img src="https://iph.href.lu/580x250" alt="newsImage01" />
-        </div>
-        <div class="center">
-          <img src="https://iph.href.lu/580x250" alt="newsImage01" />
-        </div>
-        <div class="right">
-          <img src="https://iph.href.lu/580x250" alt="newsImage01" />
+        <div class="left" v-for="(item,index) in detail.performance" :key="index">
+          <img :src="image_url+item.image" alt="newsImage01" />
         </div>
       </div>
     </div>
@@ -117,23 +95,65 @@ export default {
   data() {
     return {
       // value1: 0
-      detail: []
+      detail: [],
+      image_url: "",
+      news_list1: [],
+      news_list2: [],
+      news_list3: [],
     };
   },
   created() {
     this.home();
   },
+  filters: {
+    formatDates: function (value) {
+      let date = new Date(value);
+      let y = date.getFullYear();
+      let MM = date.getMonth() + 1;
+      MM = MM < 10 ? "0" + MM : MM;
+      let d = date.getDate();
+      d = d < 10 ? "0" + d : d;
+      let h = date.getHours();
+      h = h < 10 ? "0" + h : h;
+      let m = date.getMinutes();
+      m = m < 10 ? "0" + m : m;
+      let s = date.getSeconds();
+      s = s < 10 ? "0" + s : s;
+      return y+'-'+MM + "-" + d;
+    },
+    formatDate: function (value) {
+      let date = new Date(value);
+      let y = date.getFullYear();
+      let MM = date.getMonth() + 1;
+      MM = MM < 10 ? "0" + MM : MM;
+      let d = date.getDate();
+      d = d < 10 ? "0" + d : d;
+      let h = date.getHours();
+      h = h < 10 ? "0" + h : h;
+      let m = date.getMinutes();
+      m = m < 10 ? "0" + m : m;
+      let s = date.getSeconds();
+      s = s < 10 ? "0" + s : s;
+      return MM + "-" + d;
+    },
+  },
   methods: {
-    golink(link){
-       window.open(link); 
+    golink(link) {
+      window.open(link);
     },
     async home() {
       let data = await this.$api.home();
       if (data.msg == "success") {
+        console.log(data.data.news_list.slice(0, 1));
+        this.image_url = data.data.image_url + "/";
         this.detail = data.data;
+        this.news_list1 = data.data.news_list.slice(0, 1);
+        this.news_list2 = data.data.news_list.slice(1, 2);
+        this.news_list3 = data.data.news_list.slice(2, 5);
+        console.log(this.news_list1, this.news_list2, this.news_list3);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss">
@@ -262,8 +282,9 @@ export default {
           .news-image-date-big {
             position: absolute;
             right: 0;
-            bottom: 43px;
+            bottom: 44px;
             width: 56px;
+            background-color: #3762ff;
             height: 32px;
             color: #ffffff;
             text-align: center;
@@ -335,12 +356,16 @@ export default {
   .cases_content {
     display: flex;
     > div {
-      flex: 1;
+      width: 30%;
+      margin-right: 1%;
       > img {
         width: 100%;
       }
     }
   }
+}
+.cases {
+  margin-bottom: 30px;
 }
 h2 {
   color: #010411;

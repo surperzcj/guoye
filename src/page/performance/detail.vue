@@ -5,7 +5,7 @@
     </div>
     <div class="new_detail">
       <div class="title">
-        <span>印度JSW焦化项目</span>
+        <span>{{detail.title}}</span>
       </div>
       <div class="content" v-html="detail.text">
         {{detail.text}}
@@ -39,9 +39,7 @@ export default {
   },
   methods: {
     async detail_new(id) {
-      // //console.log(this.$api);
-      // let data = await this.$http.get('/xdPlant/1');
-      let data = await this.$api.recruitment_details({
+      let data = await this.$api.performance_details({
         id: id
       });
       if (data.msg == "success") {

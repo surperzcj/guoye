@@ -23,7 +23,7 @@
           <span>{{item.created_at}}</span>
         </div>
         <div class="content">
-          <span>受队光每她海果转放调毛照农书王周家验步素反传级度半却日合龙美太圆格方长活石拉元先存小织走性真安市小维写我记后只除济府着前山米那受容基干斗按在节起经特光如今传。是取成规又才元论选花压维油按少关科族叫条处现米红大报。</span>
+          <span>{{item.synopsis}}</span>
         </div>
         <div class="btn">
           <span @click="godetail(item.id)">查看详情</span>

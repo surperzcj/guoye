@@ -42,8 +42,6 @@ export default {
   },
   methods: {
     async detail_new(id) {
-      // //console.log(this.$api);
-      // let data = await this.$http.get('/xdPlant/1');
       let data = await this.$api.newdetails({
         id: id
       });
