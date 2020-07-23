@@ -7,18 +7,41 @@
  * @FilePath: \bbb\guoye\src\page\home\index.vue
 --> 
 <template>
-  <div style="font-size:100px">
-      公司简介详情页
+  <div>
+    <div class="detail" v-html="detail.text">{{detail.text}}</div>
   </div>
 </template>
 <script>
 export default {
-
   data() {
-    return {};
+    return {
+      detail: []
+    };
+  },
+  methods: {
+    async company_profiles() {
+      let data = await this.$api.company_profiles({
+        id: 1
+      });
+      if (data.msg == "success") {
+        this.detail = data.data;
+      }
+    }
+  },
+  created() {
+    this.company_profiles();
   }
 };
 </script>
 <style lang="scss" scoped>
- 
+.detail {
+  > p {
+    font-size: 16px;
+    color: #333333;
+    text-indent: 2em;
+  }
+  > img {
+    width: 100%;
+  }
+}
 </style>

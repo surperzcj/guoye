@@ -18,43 +18,43 @@
         <span>Recruitment</span>
       </div>
     </div>
-    <div class="connection_list">
+    <div class="connection_list" v-for="(item,index) in detail" :key="index">
       <div class="left">
-        <span>北京总部</span>
+        <span>{{item.name}}</span>
       </div>
       <div class="right">
         <div class="phone">
-          <span>电话：123456789</span>
-          <span>传真：123456789</span>
-          <span>邮箱：123456789@qq.com</span>
+          <span>电话：{{item.mobile}}</span>
+          <span>传真：{{item.fax}}</span>
+          <span>邮箱：{{item.email}}</span>
         </div>
         <div class="address">
-          <span>地址：北京市海淀区海淀北二街10号泰鹏大厦310</span>
+          <span>地址：{{item.address}}</span>
         </div>
       </div>
-    </div>
-    <div class="connection_list">
-      <div class="left">
-        <span>北京总部</span>
-      </div>
-      <div class="right">
-        <div class="phone">
-          <span>电话：123456789</span>
-          <span>传真：123456789</span>
-          <span>邮箱：123456789@qq.com</span>
-        </div>
-        <div class="address">
-          <span>地址：北京市海淀区海淀北二街10号泰鹏大厦310</span>
-        </div>
-      </div>
+    </div>>
     </div>
   </div>
 </template>
 <script>
 export default {
   data() {
-    return {};
-  }
+    return {
+      detail: [],
+    };
+  },
+  methods: {
+    async contact_us() {
+      let data = await this.$api.contact_us();
+      if (data.msg == "success") {
+        this.detail = data.data;
+        console.log(this.detail);
+      }
+    },
+  },
+  created() {
+    this.contact_us();
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -97,7 +97,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  &:last-child{
+  &:last-child {
     margin-bottom: 81px;
   }
   .left {

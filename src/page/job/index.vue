@@ -19,16 +19,26 @@
       </div>
       <div class="job_list" v-for="(item,index) in list" :key="index">
         <div class="top">
-          <span>项目经理 工作地（北京） 招聘人 （3人）</span>
-          <span>2020-05-22</span>
+          <span>{{item.operating_post}} 工作地（{{item.address}}） 招聘人 （{{item.num}}人）</span>
+          <span>{{item.created_at}}</span>
         </div>
         <div class="content">
           <span>受队光每她海果转放调毛照农书王周家验步素反传级度半却日合龙美太圆格方长活石拉元先存小织走性真安市小维写我记后只除济府着前山米那受容基干斗按在节起经特光如今传。是取成规又才元论选花压维油按少关科族叫条处现米红大报。</span>
         </div>
         <div class="btn">
-          <span>查看详情</span>
+          <span @click="godetail(item.id)">查看详情</span>
         </div>
       </div>
+    </div>
+    <div class="pagination" v-if="total>0">
+      <el-pagination
+        :total="total"
+        :page-size="size"
+        :page-count="current"
+        :pager-count="pageCount"
+        @current-change="currentChange"
+        :current-page="current"
+      ></el-pagination>
     </div>
   </div>
 </template>
@@ -36,20 +46,36 @@
 export default {
   data() {
     return {
-      list:[]
+      list: [],
+      pageCount: 5,
+      size: 5,
+      current: 1,
+      total: null,
     };
   },
   methods: {
+    godetail(id) {
+      this.$router.push({
+        path: "/jobdetail",
+        query: {
+          id: id,
+        },
+      });
+    },
     async recruitmentlist() {
-      let data = await this.$api.recruitmentlist();
+      let data = await this.$api.recruitmentlist({
+        limit: this.size,
+        page: this.current,
+      });
       if (data.msg == "success") {
-        this.list = data.data;
+        this.list = data.data.list;
+        this.total = data.data.count;
       }
-    }
+    },
   },
   created() {
     this.recruitmentlist();
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -130,5 +156,11 @@ export default {
       }
     }
   }
+}
+.pagination {
+  margin-top: 48px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: flex-end;
 }
 </style>

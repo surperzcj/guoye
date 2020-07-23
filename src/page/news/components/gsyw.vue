@@ -86,8 +86,8 @@ export default {
         page: this.current
       });
       if (data.msg == "success") {
-        this.list = data.data;
-        this.total = this.list.length;
+        this.list = data.data.list;
+        this.total = data.data.count;
       }
       console.log(data);
     }

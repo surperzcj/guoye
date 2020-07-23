@@ -15,8 +15,10 @@ import register from '@/page/register'
 import company from '@/page/company'
 import news from '@/page/news'
 import performance from '@/page/performance'
+import performancedetail from '@/page/performance/detail'
 import staff from '@/page/staff'
 import job from '@/page/job'
+import jobdetail from '@/page/job/detail'
 import connection from '@/page/connection'
 import newsdetail from '@/page/news/detail'
 Vue.use(Router)
@@ -46,6 +48,11 @@ export default new Router({
           component:performance
         },
         {
+          path:'performancedetail',
+          component:performancedetail
+        },
+        
+        {
           path:'staff',
           component:staff
         },
@@ -53,6 +60,11 @@ export default new Router({
           path:'job',
           component:job
         },
+        {
+          path:'jobdetail',
+          component:jobdetail
+        },
+        
         {
           path:'connection',
           component:connection

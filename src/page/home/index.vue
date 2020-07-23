@@ -8,31 +8,21 @@
 --> 
 <template>
   <div>
-    <!-- <Carousel v-model="value1" loop>
-      <CarouselItem>
-        <div class="demo-carousel">1</div>
-      </CarouselItem>
-      <CarouselItem>
-        <div class="demo-carousel">2</div>
-      </CarouselItem>
-      <CarouselItem>
-        <div class="demo-carousel">3</div>
-      </CarouselItem>
-      <CarouselItem>
-        <div class="demo-carousel">4</div>
-      </CarouselItem>
-    </Carousel>-->
     <!-- banner部分 -->
     <div class="banner">
-      <img src="../../assets/image/banner.png" alt />
+      <el-carousel direction="horizontal">
+        <el-carousel-item v-for="(item,index) in detail.slide_show" :key="index">
+          <img @click="golink(item.link)" :src="item.image" alt />
+        </el-carousel-item>
+      </el-carousel>
     </div>
 
     <!-- 简介部分 -->
     <div class="synopsis">
       <div class="left">
         <h2>公司简介</h2>
-        <span>北京国冶锐诚工程技术有限公司成立于1998年，由中钢设备有限公司、北京佰能电气技术有限公司和北京中冶迈克液压有限责任公司共同出资设立，由中钢设备有限公司控股，主要从事工程承包和项目管理、冶金工程和设备监理、技术开发和咨询服务等业务。</span>
-        <span>公司依靠高素质专业技术人员组成的项目团队，致力于低成本、高效率的品质服务，坚持“技术先进、方法科学、产品优质、服务满意”的质量方针，使客户工程项目得到全面的质量和进度…</span>
+        <span>{{detail.company_profile.synopsis}}</span>
+
       </div>
       <div class="right">
         <img src="../../assets/image/synopsis.png" alt />
@@ -127,14 +117,64 @@ export default {
   data() {
     return {
       // value1: 0
+      detail: []
     };
   },
-  created(){
+  created() {
+    this.home();
   },
-  methods:{
+  methods: {
+    golink(link){
+       window.open(link); 
+    },
+    async home() {
+      let data = await this.$api.home();
+      if (data.msg == "success") {
+        this.detail = data.data;
+      }
+    }
   }
 };
 </script>
+<style lang="scss">
+.banner {
+  .el-carousel.el-carousel--horizontal {
+    height: 600px;
+    .el-carousel__container {
+      height: 100%;
+      .el-carousel__arrow {
+        display: none;
+      }
+      .el-carousel__item {
+        > img {
+          background-size: 100% 100%;
+          height: 100%;
+        }
+      }
+    }
+    .el-carousel__indicators {
+      .el-carousel__indicator {
+        .el-carousel__button {
+          width: 6px;
+          height: 6px;
+          background: rgba(255, 255, 255, 1);
+          border-radius: 3px;
+          opacity: 0.5;
+        }
+      }
+      .el-carousel__indicator.is-active {
+        .el-carousel__button {
+          width: 30px;
+          height: 6px;
+          background: rgba(255, 255, 255, 1);
+          border-radius: 3px;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+</style>
 <style lang="scss" scoped>
 // banner部分
 .banner {
@@ -292,11 +332,11 @@ export default {
     .left {
     }
   }
-  .cases_content{
+  .cases_content {
     display: flex;
-    >div{
+    > div {
       flex: 1;
-      >img{
+      > img {
         width: 100%;
       }
     }

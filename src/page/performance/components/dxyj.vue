@@ -10,43 +10,67 @@
   <div>
     <div class="performance_list">
       <ul>
-        <li>
-          <img class="top_img" src="../../../assets/image/logo.png" alt />
-          <div class="bottom">
-            <span>印度JSW焦化项目</span>
-            <img src="../../../assets/image/rightarrow.png" alt />
-          </div>
-        </li>
-               <li>
-          <img class="top_img" src="../../../assets/image/logo.png" alt />
-          <div class="bottom">
-            <span>印度JSW焦化项目</span>
-            <img src="../../../assets/image/rightarrow.png" alt />
-          </div>
-        </li>
-               <li>
-          <img class="top_img" src="../../../assets/image/logo.png" alt />
-          <div class="bottom">
-            <span>印度JSW焦化项目</span>
-            <img src="../../../assets/image/rightarrow.png" alt />
-          </div>
-        </li>
-               <li>
-          <img class="top_img" src="../../../assets/image/logo.png" alt />
-          <div class="bottom">
-            <span>印度JSW焦化项目</span>
+        <li v-for="(item,index) in list" :key="index">
+          <img class="top_img" :src="item.image" alt />
+          <div class="bottom" @click="godetail(item.id)">
+            <span>{{item.title}}</span>
             <img src="../../../assets/image/rightarrow.png" alt />
           </div>
         </li>
       </ul>
+    </div>
+    <div class="pagination" v-if="total>0">
+      <el-pagination
+        :total="total"
+        :page-size="size"
+        :page-count="current"
+        :pager-count="pageCount"
+        @current-change="currentChange"
+        :current-page="current"
+      ></el-pagination>
     </div>
   </div>
 </template>
 <script>
 export default {
   data() {
-    return {};
-  }
+    return {
+      list: [],
+      total: null,
+      pageCount: 5,
+      size: 5,
+      current: 1,
+    };
+  },
+  methods: {
+    currentChange(page) {
+      this.current = page;
+      this.performance();
+    },
+        godetail(id) {
+      this.$router.push({
+        path: "/performancedetail",
+        query: {
+          id: id
+        }
+      });
+    },
+    async performance() {
+      let data = await this.$api.performance({
+        type: 1,
+        limit: this.size,
+        page: this.current,
+      });
+      if (data.msg == "success") {
+        console.log(data);
+        this.list = data.data.list;
+        this.total = data.data.count;
+      }
+    },
+  },
+  created() {
+    this.performance();
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -56,14 +80,14 @@ export default {
     flex-wrap: wrap;
     justify-content: space-between;
     > li {
-      border-bottom: 1px solid #CACACA;
-      &:nth-child(n+4){
+      border-bottom: 1px solid #cacaca;
+      &:nth-child(n + 4) {
         padding-top: 23px;
       }
 
-      &:hover{
-        .bottom{
-          background-color: #3762FF;
+      &:hover {
+        .bottom {
+          background-color: #3762ff;
           color: #fff;
         }
       }
@@ -88,12 +112,17 @@ export default {
           text-overflow: ellipsis;
           white-space: nowrap;
         }
-        >img{
+        > img {
           height: 14px;
-
         }
       }
     }
   }
+}
+.pagination {
+  margin-top: 48px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: flex-end;
 }
 </style>

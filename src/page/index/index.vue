@@ -8,8 +8,10 @@
 --> 
 <template>
   <div>
+    <div class="content">
     <Header />
-    <router-view :key="$route.fullPath"></router-view>
+      <router-view :key="$route.fullPath"></router-view>
+    </div>
     <Footer />
   </div>
 </template>
@@ -22,6 +24,12 @@ export default {
   },
   data() {
     return {};
-  }
+  },
 };
 </script>
+<style lang="scss" scoped>
+.content {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+</style>
