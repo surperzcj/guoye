@@ -13,22 +13,22 @@
             @click="isCurrentPath(index)"
             :key="index"
           >
-            <span @click="goto(item.reqUrl)">{{item.name}}</span>
-            <img src="../assets/image/down.png" alt="" v-if="item.nodes.length>0">
+            <span @click="goto(item.reqUrl,index)">{{item.name}}</span>
+            <img src="../assets/image/down.png" alt v-if="item.nodes.length>0" />
 
             <div class="inner-link" v-if="item.nodes.length>0" v-show="hideNavLink==false">
               <ul>
                 <li
                   v-for="(i,k) in item.nodes"
                   :key="k"
-                  @click="goto(i.reqUrl)"
+                  @click="goto(i.reqUrl,index)"
                   v-bind:style="{ padding: item.nodes.length==1 ? '10px 0' : '' }"
                 >{{i.name}}</li>
               </ul>
             </div>
           </li>
         </ul>
-        <div class="islogin">
+        <div class="islogin" v-if="!$store.state.token">
           <div class="left" @click="$router.push('/login')">登录</div>
           <div class="right" @click="$router.push('/register')">注册</div>
         </div>
@@ -46,49 +46,49 @@ export default {
         {
           name: "首页",
           nodes: [],
-          reqUrl:{
-                path: "/"
-              },
+          reqUrl: {
+            path: "/",
+          },
         },
         {
           id: 1,
           name: "公司概况",
-          reqUrl:{
-                path: "/company",
-                params:'gsjj'
-              },
+          reqUrl: {
+            path: "/company",
+            params: "gsjj",
+          },
           nodes: [
             {
               name: "公司简介",
               nodes: [],
-              reqUrl:{
+              reqUrl: {
                 path: "/company",
-                params:'gsjj'
-              }
+                params: "gsjj",
+              },
             },
             {
               name: "组织架构",
               nodes: [],
-              reqUrl:{
+              reqUrl: {
                 path: "/company",
-                params:'zzjg'
-              }
+                params: "zzjg",
+              },
             },
             {
               name: "锐诚团队",
               nodes: [],
-              reqUrl:{
+              reqUrl: {
                 path: "/company",
-                params:'rctd'
-              }
+                params: "rctd",
+              },
             },
             {
               name: "企业文化",
               nodes: [],
-              reqUrl:{
+              reqUrl: {
                 path: "/company",
-                params:'qywh'
-              }
+                params: "qywh",
+              },
             },
           ],
         },
@@ -99,136 +99,139 @@ export default {
             {
               name: "公司要闻",
               nodes: [],
-              reqUrl:{
+              reqUrl: {
                 path: "/news",
-                params:'gsyw'
-
-              }
+                params: "gsyw",
+              },
             },
             {
               name: "行业动态",
               nodes: [],
-              reqUrl:{
+              reqUrl: {
                 path: "/news",
-                params:'hydt'
-              }
+                params: "hydt",
+              },
             },
           ],
-          reqUrl: "/news"
+          reqUrl: "/news",
         },
         {
           name: "公司业绩",
-         
-          reqUrl:{
-                path: "/performance",
-                params:'dxyj'
-              },
+
+          reqUrl: {
+            path: "/performance",
+            params: "dxyj",
+          },
           nodes: [
             {
               name: "典型业绩",
               nodes: [],
-              reqUrl:{
+              reqUrl: {
                 path: "/performance",
-                params:'dxyj'
-              }
+                params: "dxyj",
+              },
             },
             {
               name: "主要业绩",
               nodes: [],
-              reqUrl:{
+              reqUrl: {
                 path: "/performance",
-                params:'zyyj'
-              }
+                params: "zyyj",
+              },
             },
           ],
         },
         {
           name: "员工家园",
-          reqUrl:{
-                path: "/staff",
-                params:'tzgg'
-              },
+          reqUrl: {
+            path: "/staff",
+            params: "tzgg",
+          },
           nodes: [
             {
               name: "通知公告",
               nodes: [],
-              reqUrl:{
+              reqUrl: {
                 path: "/staff",
-                params:'tzgg'
-              }
+                params: "tzgg",
+              },
             },
             {
               name: "培训专栏",
               nodes: [],
-              reqUrl:{
+              reqUrl: {
                 path: "/staff",
-                params:'pxzl'
-              }
+                params: "pxzl",
+              },
             },
             {
               name: "质量体系",
               nodes: [],
-              reqUrl:{
+              reqUrl: {
                 path: "/staff",
-                params:'zltx'
-              }
+                params: "zltx",
+              },
             },
             {
               name: "业务中心",
               nodes: [],
-              reqUrl:{
+              reqUrl: {
                 path: "/staff",
-                params:'ywzx'
-              }
+                params: "ywzx",
+              },
             },
             {
               name: "会议纪要",
               nodes: [],
-              reqUrl:{
+              reqUrl: {
                 path: "/staff",
-                params:'hyjy'
-              }
+                params: "hyjy",
+              },
             },
             {
               name: "员工风采",
               nodes: [],
-              reqUrl:{
+              reqUrl: {
                 path: "/staff",
-                params:'ygfc'
-              }
+                params: "ygfc",
+              },
             },
           ],
         },
         {
           name: "人才招聘",
           nodes: [],
-          reqUrl:{
-                path: "/job"
-              }
+          reqUrl: {
+            path: "/job",
+          },
         },
         {
           name: "联系我们",
           nodes: [],
-          reqUrl:{
-                path: "/connection"
-              }
-        }
-      ]
+          reqUrl: {
+            path: "/connection",
+          },
+        },
+      ],
     };
+  },
+  created() {
+    console.log(this.$store.state.token);
   },
   methods: {
     isCurrentPath(index) {
       this.show = index;
     },
-    goto(url) {
+    goto(url, index) {
+      this.show = index;
       this.$router.push({
-        path:url.path,
-        query:{
-          type:url.params
-        }
-      })
-    }
-  }
+        path: url.path,
+        query: {
+          type: url.params,
+        },
+      });
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -242,8 +245,8 @@ export default {
   .pointer {
     cursor: pointer;
   }
-  .logo{
-    >img{
+  .logo {
+    > img {
       max-height: 38px;
     }
   }
@@ -257,22 +260,21 @@ export default {
         margin-right: 57px;
         padding-bottom: 3px;
         position: relative;
-        height:42px;
-        &:hover{
-         >span{
+        height: 42px;
+        &:hover {
+          > span {
             color: #3762ff;
-         }
-         .inner-link{
-           display: block;
-         }
-
+          }
+          .inner-link {
+            display: block;
+          }
         }
         > span {
           color: #666666;
           font-size: 14px;
           letter-spacing: 2px;
         }
-        >img{
+        > img {
           height: 6px;
           margin-left: 6px;
         }
@@ -285,31 +287,30 @@ export default {
           box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.14);
           top: 40px;
           left: -30px;
-          &:hover{
+          &:hover {
             display: block;
           }
           > ul {
             text-align: center;
-            >li{
+            > li {
               line-height: 40px;
               padding: 0px !important;
               color: #666666;
               font-size: 14px;
-              &:hover{
+              &:hover {
                 background-color: #3762ff;
                 color: #fff;
               }
-              
             }
           }
           //
         }
       }
       li.active {
-         border-bottom: 1px solid #3762ff;
+        border-bottom: 1px solid #3762ff;
         > span {
           color: #3762ff;
-         
+
           // line-height: 22px;
           padding-bottom: 3px;
         }

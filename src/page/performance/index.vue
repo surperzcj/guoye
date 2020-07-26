@@ -10,7 +10,7 @@
   <div>
     <div class="banner">
       <img src="../../assets/image/performance.png" alt />
-      <span>首页 > 公司业绩 > 典型业绩</span>
+      <span>首页 > 公司业绩 > {{ title}}</span>
     </div>
     <div class="content_css">
       <div class="left">
@@ -19,8 +19,22 @@
           <span>company achievements</span>
         </div>
         <div class="list">
-          <div class="block" :class="{'active':currentTabComponent=='dxyj'}" @click="currentTabComponent = 'dxyj'"><span>典型业绩</span><span>></span></div>
-          <div class="block" :class="{'active':currentTabComponent=='zyyj'}" @click="currentTabComponent = 'zyyj'"><span>主要业绩</span><span>></span></div>
+          <div
+            class="block"
+            :class="{'active':currentTabComponent=='dxyj'}"
+            @click="currentTabComponent = 'dxyj'"
+          >
+            <span>典型业绩</span>
+            <i class="el-icon-arrow-right"></i>
+          </div>
+          <div
+            class="block"
+            :class="{'active':currentTabComponent=='zyyj'}"
+            @click="currentTabComponent = 'zyyj'"
+          >
+            <span>主要业绩</span>
+            <i class="el-icon-arrow-right"></i>
+          </div>
         </div>
       </div>
       <div class="right">
@@ -37,16 +51,29 @@ import zyyj from "./components/zyyj";
 export default {
   components: {
     dxyj,
-    zyyj
+    zyyj,
+  },
+  watch: {
+    currentTabComponent(a) {
+      console.log(a);
+      switch (a) {
+        case "dxyj":
+          this.title = "典型业绩";
+          break;
+        default:
+          this.title = "主要业绩";
+      }
+    },
   },
   data() {
     return {
-      currentTabComponent: "gsyw"
+      currentTabComponent: "gsyw",
+      title: "典型业绩",
     };
   },
   created() {
     this.currentTabComponent = this.$route.query.type;
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -89,16 +116,33 @@ export default {
       display: flex;
       flex-direction: column;
       margin-top: 32px;
-      .block {
+        .block {
         line-height: 70px;
         height: 70px;
         padding: 0px 10px;
         display: flex;
+        align-items: center;
         justify-content: space-between;
+        > i {
+          font-size: 18px;
+          color: #333333;
+        }
+        > span {
+          color: #333333;
+          font-size: 18px;
+        }
       }
       .active {
         background: url("../../assets/image/select.png") no-repeat center center;
         background-size: 100% 100%;
+        > span {
+          color: #fff;
+          font-size: 24px;
+        }
+        >i{
+          color: #fff;
+          font-size: 24px;
+        }
       }
     }
   }

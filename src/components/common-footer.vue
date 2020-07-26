@@ -14,7 +14,7 @@
             </li>
             <li>
               <span>友情链接</span>
-              <span v-for="(item,index) in detail.friendly_link" :key="index" @click="golink(item.link)">{{item.title}}</span>
+              <span class="lianjie" v-for="(item,index) in detail.friendly_link" :key="index" @click="golink(item.link)">{{item.title}}</span>
               <span>邮箱 : {{detail.bottom.email}}</span>
             </li>
           </ul>
@@ -111,5 +111,8 @@ export default {
     text-align: center;
     color: rgba(255, 255, 255, 0.3);
   }
+}
+.lianjie{
+    cursor: pointer;
 }
 </style>

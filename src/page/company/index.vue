@@ -10,7 +10,7 @@
   <div>
     <div class="banner">
       <img src="../../assets/image/company.png" alt />
-      <span>首页 > 公司概述 > 公司简介</span>
+      <span>首页 > 公司概述 > {{title}}</span>
     </div>
     <div class="content_css">
       <div class="left">
@@ -25,7 +25,7 @@
             @click="currentTabComponent = 'gsjj'"
           >
             <span>公司简介</span>
-            <span>></span>
+            <i class="el-icon-arrow-right"></i>
           </div>
           <div
             class="block"
@@ -33,7 +33,7 @@
             @click="currentTabComponent = 'zzjg'"
           >
             <span>组织架构</span>
-            <span>></span>
+            <i class="el-icon-arrow-right"></i>
           </div>
           <div
             class="block"
@@ -41,7 +41,7 @@
             @click="currentTabComponent = 'rctd'"
           >
             <span>锐诚团队</span>
-            <span>></span>
+            <i class="el-icon-arrow-right"></i>
           </div>
           <div
             class="block"
@@ -49,7 +49,7 @@
             @click="currentTabComponent = 'qywh'"
           >
             <span>企业文化</span>
-            <span>></span>
+            <i class="el-icon-arrow-right"></i>
           </div>
         </div>
       </div>
@@ -71,16 +71,35 @@ export default {
     gsjj,
     zzjg,
     rctd,
-    qywh
+    qywh,
+  },
+  watch: {
+    currentTabComponent(a) {
+      console.log(a);
+      switch (a) {
+        case "gsjj":
+          this.title = "公司简介";
+          break;
+        case "zzjg":
+          this.title = "组织架构";
+          break;
+        case "rctd":
+          this.title = "锐诚团队";
+          break;
+        default:
+          this.title = "企业文化";
+      }
+    },
   },
   data() {
     return {
-      currentTabComponent: "gsyw"
+      title: "公司简介",
+      currentTabComponent: "gsyw",
     };
   },
   created() {
     this.currentTabComponent = this.$route.query.type;
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -130,8 +149,9 @@ export default {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        > img {
-          width: 10px;
+        > i {
+          font-size: 18px;
+          color: #333333;
         }
         > span {
           color: #333333;
@@ -142,6 +162,10 @@ export default {
         background: url("../../assets/image/select.png") no-repeat center center;
         background-size: 100% 100%;
         > span {
+          color: #fff;
+          font-size: 24px;
+        }
+        >i{
           color: #fff;
           font-size: 24px;
         }

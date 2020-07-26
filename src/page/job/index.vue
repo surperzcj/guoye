@@ -62,6 +62,10 @@ export default {
         },
       });
     },
+    currentChange(page) {
+      this.current = page;
+      this.recruitmentlist();
+    },
     async recruitmentlist() {
       let data = await this.$api.recruitmentlist({
         limit: this.size,

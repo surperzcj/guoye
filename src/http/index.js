@@ -20,9 +20,9 @@ class Https {
   employees_home = (params) => HttpUtils.post('/employees_home', params) //员工家园
   performance_details = (params) => HttpUtils.post('/performance-details', params) //业绩详情
   employeesdetails = (params) => HttpUtils.post('/employees_details', params) //元工家园详情
- 
+  register = (params) => HttpUtils.post('/register', params) //注册接口
+  login = (params) => HttpUtils.post('/login', params) //登录接口
   
- 
   
 }
 export default new Https()

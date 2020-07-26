@@ -10,7 +10,7 @@
   <div>
     <div class="banner">
       <img src="../../assets/image/new_banner.png" alt />
-      <span>首页 > 新闻动态 > 公司要闻</span>
+      <span>首页 > 新闻动态 > {{title}}</span>
     </div>
     <div class="content_css">
       <div class="left">
@@ -19,8 +19,22 @@
           <span>Company Overview</span>
         </div>
         <div class="list">
-          <div class="block" :class="{'active':currentTabComponent=='gsyw'}" @click="currentTabComponent = 'gsyw'"><span>公司要闻</span><span>></span></div>
-          <div class="block" :class="{'active':currentTabComponent=='hydt'}" @click="currentTabComponent = 'hydt'"><span>行业动态</span><span>></span></div>
+          <div
+            class="block"
+            :class="{'active':currentTabComponent=='gsyw'}"
+            @click="currentTabComponent = 'gsyw'"
+          >
+            <span>公司要闻</span>
+            <i class="el-icon-arrow-right"></i>
+          </div>
+          <div
+            class="block"
+            :class="{'active':currentTabComponent=='hydt'}"
+            @click="currentTabComponent = 'hydt'"
+          >
+            <span>行业动态</span>
+            <i class="el-icon-arrow-right"></i>
+          </div>
         </div>
       </div>
       <div class="right">
@@ -37,20 +51,32 @@ import hydt from "./components/hydt";
 export default {
   components: {
     gsyw,
-    hydt
+    hydt,
+  },
+  watch: {
+    currentTabComponent(a) {
+      console.log(a);
+      switch (a) {
+        case "gsyw":
+          this.title = "公司要闻";
+          break;
+        default:
+          this.title = "行业动态";
+      }
+    },
   },
   data() {
     return {
-      currentTabComponent: "gsyw"
+      title: "公司要闻",
+      currentTabComponent: "gsyw",
     };
   },
   created() {
     this.currentTabComponent = this.$route.query.type;
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>
-
 .banner {
   > img {
     max-height: 400px;
@@ -73,37 +99,54 @@ export default {
   margin-top: 69px;
   padding: 0px 120px;
   justify-content: space-between;
-  .left{
+  .left {
     width: 20%;
-    border-right: 1px solid #F3F3F4;
-    .title{
-      >h2{
+    border-right: 1px solid #f3f3f4;
+    .title {
+      > h2 {
         color: #010411;
         font-size: 32px;
       }
-      >p{
+      > p {
         color: #666666;
         font-size: 16px;
       }
     }
-    .list{
+    .list {
       display: flex;
       flex-direction: column;
       margin-top: 32px;
-      .block{
+          .block {
         line-height: 70px;
         height: 70px;
         padding: 0px 10px;
         display: flex;
+        align-items: center;
         justify-content: space-between;
+        > i {
+          font-size: 18px;
+          color: #333333;
+        }
+        > span {
+          color: #333333;
+          font-size: 18px;
+        }
       }
-      .active{
-        background: url('../../assets/image/select.png') no-repeat center center;
+      .active {
+        background: url("../../assets/image/select.png") no-repeat center center;
         background-size: 100% 100%;
+        > span {
+          color: #fff;
+          font-size: 24px;
+        }
+        >i{
+          color: #fff;
+          font-size: 24px;
+        }
       }
     }
   }
-  .right{
+  .right {
     flex: 1;
     padding-left: 100px;
   }

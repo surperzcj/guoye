@@ -34,7 +34,7 @@ export default new Router({
       children:[
         {
           path:'home',
-          component:home
+          component:home,
         },
         {
           path:'company',

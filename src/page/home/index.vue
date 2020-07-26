@@ -33,32 +33,47 @@
         <span class="left">
           <h2>新闻资讯</h2>
         </span>
-        <span class="right">more+</span>
+        <span class="right lianjie" @click="xwzi">more+</span>
       </div>
       <div class="content">
-        <div class="news-content-left" v-for="(item,index) in news_list1" :key="index+'aa'">
+        <div
+          class="news-content-left"
+          v-for="(item,index) in news_list1"
+          :key="index+'aa'"
+          @click="godetail(item.id)"
+        >
           <div class="news-image-title-big">
             <img :src="image_url+item.image" />
             <div class="news-image-date-big">{{item.created_at|formatDate}}</div>
           </div>
-          <div class="news-image-title">
+          <div class="news-image-title lianjie">
             <h3>{{item.title}}</h3>
             <div>{{item.synopsis}}</div>
           </div>
         </div>
         <div class="news-content-right">
           <div class="right-top">
-            <div class="news-image-top-big" v-for="(item,index) in news_list2" :key="index+'bb'">
+            <div
+              class="news-image-top-big"
+              v-for="(item,index) in news_list2"
+              :key="index+'bb'"
+              @click="godetail(item.id)"
+            >
               <img :src="image_url+item.image" />
               <div class="news-image-date-big">{{item.created_at|formatDate}}</div>
-              <div class="news-title">
+              <div class="news-title lianjie">
                 <h3>{{item.title}}</h3>
               </div>
             </div>
           </div>
           <div class="right_list">
             <ul>
-              <li v-for="(item,index) in news_list3" :key="index+'cc'">
+              <li
+                class="lianjie"
+                v-for="(item,index) in news_list3"
+                :key="index+'cc'"
+                @click="godetail(item.id)"
+              >
                 <span class="new-left">{{item.title}}</span>
                 <span>{{item.created_at|formatDates}}</span>
               </li>
@@ -73,11 +88,19 @@
         <span class="left">
           <h2>项目案例</h2>
         </span>
-        <span class="right">more+</span>
+        <span class="right lianjie" @click="xual">more+</span>
       </div>
       <div class="cases_content">
-        <div class="left" v-for="(item,index) in detail.performance" :key="index">
+        <div
+          class="left"
+          v-for="(item,index) in detail.performance"
+          :key="index"
+          @click="goperformance(item.id)"
+        >
           <img :src="image_url+item.image" alt="newsImage01" />
+          <div class="title">
+            <span>{{item.title}}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -119,7 +142,7 @@ export default {
       m = m < 10 ? "0" + m : m;
       let s = date.getSeconds();
       s = s < 10 ? "0" + s : s;
-      return y+'-'+MM + "-" + d;
+      return y + "-" + MM + "-" + d;
     },
     formatDate: function (value) {
       let date = new Date(value);
@@ -138,8 +161,40 @@ export default {
     },
   },
   methods: {
+    xwzi() {
+      this.$router.push({
+        path: "/news",
+        query: {
+          type: "gsyw",
+        },
+      });
+    },
+    xual() {
+      this.$router.push({
+        path: "/performance",
+        query: {
+          type: "dxyj",
+        },
+      });
+    },
     golink(link) {
       window.open(link);
+    },
+    godetail(id) {
+      this.$router.push({
+        path: "/newsdetail",
+        query: {
+          id: id,
+        },
+      });
+    },
+    goperformance(id) {
+      this.$router.push({
+        path: "/performancedetail",
+        query: {
+          id: id,
+        },
+      });
     },
     async home() {
       let data = await this.$api.home();
@@ -148,8 +203,8 @@ export default {
         this.image_url = data.data.image_url + "/";
         this.detail = data.data;
         this.news_list1 = data.data.news_list.slice(0, 1);
-        this.news_list2 = data.data.news_list.slice(1, 2);
-        this.news_list3 = data.data.news_list.slice(2, 5);
+        this.news_list2 = data.data.news_list.slice(1, 3);
+        this.news_list3 = data.data.news_list.slice(3, 6);
         console.log(this.news_list1, this.news_list2, this.news_list3);
       }
     },
@@ -358,8 +413,34 @@ export default {
     > div {
       width: 30%;
       margin-right: 1%;
+      position: relative;
+      &:hover {
+        .title {
+          display: block;
+        }
+      }
       > img {
         width: 100%;
+        height: 250px;
+        background-size: cover;
+      }
+      .title {
+        position: absolute;
+        width: 100%;
+        height: 250px;
+        z-index: 999;
+        top: 0;
+        left: 0;
+        background: rgba(55, 98, 255, 0.8);
+        color: #fff;
+        text-align: center;
+        display: none;
+
+        > span {
+          margin: 0 auto;
+          line-height: 250px;
+          font-size: 18px;
+        }
       }
     }
   }
@@ -371,5 +452,8 @@ h2 {
   color: #010411;
   font-size: 24px;
   font-weight: bold;
+}
+.lianjie {
+  cursor: pointer;
 }
 </style>

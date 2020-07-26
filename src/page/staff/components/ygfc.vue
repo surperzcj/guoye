@@ -37,8 +37,8 @@ export default {
     return {
       list: [],
       total: null,
-      pageCount: 5,
-      size: 5,
+      pageCount: 6,
+      size: 6,
       current: 1,
       image_url: "",
     };
@@ -80,9 +80,18 @@ export default {
   > ul {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    // justify-content: space-between;
     > li {
       border-bottom: 1px solid #cacaca;
+      &:nth-child(3n){
+        margin-left: 2%;
+      }
+           &:nth-child(2){
+        margin-left: 2%;
+      }
+           &:nth-child(5){
+        margin-left: 2%;
+      }
       &:nth-child(n + 4) {
         padding-top: 23px;
       }
