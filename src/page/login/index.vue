@@ -74,7 +74,7 @@ export default {
           type: "success",
           offset: 300,
         });
-        this.$store.commit('SET_TOKEN',data.data.token)
+        this.$store.commit('settoken',data.data.token)
         this.$router.push("/home");
         console.log(this.$store.state.token)
       } else {

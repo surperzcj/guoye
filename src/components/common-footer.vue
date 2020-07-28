@@ -20,9 +20,12 @@
           </ul>
         </div>
         <div class="content_l">
-          <span>员工家园</span>
+        
           <img :src="detail.image.bottom_logo" alt />
         </div>
+      </div>
+      <div class="ygjy" @click="goygjy">
+          <span>员工家园</span>
       </div>
     </div>
     <div class="name">
@@ -41,8 +44,19 @@ export default {
     this.commonality()
   },
   methods: {
+    goygjy(){
+     this.$router.push({
+        path: '/staff',
+        query: {
+          type: 'tzgg',
+        },
+      });
+    },
     golink(link){
-      window.open(link);   
+      if(link){
+         window.open(link);  
+      }
+      
     },
     async commonality() {
       let data = await this.$api.commonality();
@@ -57,15 +71,19 @@ export default {
 <style lang="scss" scoped>
 .footer {
   width: 100%;
+  margin-top: 20px;
   .content {
     background: url("../assets/image/footer_banner.png") no-repeat center center;
     min-width: 100%;
     min-height: 300px;
     background-size: cover;
+    position: relative;
     .content_t {
       display: flex;
+      max-width: 1440px;
+      margin: 0 auto;
       justify-content: space-between;
-      padding: 64px 120px 0px 120px;
+      padding: 64px 0px 0px 0px;
       .content_l {
         // display: flex;
 
@@ -114,5 +132,31 @@ export default {
 }
 .lianjie{
     cursor: pointer;
+}
+.ygjy{
+  position: absolute;
+  right: 0;
+  top: 50%;
+  opacity: .4;
+  background:rgba(4,14,53,1);
+  line-height: 40px;
+  padding: 0px 32px;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-size: 14px;
+    cursor: pointer;
+  &::before{
+    content: '';
+       width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-right: 40px solid #0b1e63;
+    // opacity: .4;
+    border-bottom: 20px solid transparent;
+    z-index: 999;
+    position: absolute;
+    left: -40px;
+  }
+
 }
 </style>

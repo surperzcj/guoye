@@ -109,9 +109,11 @@ export default {
       }
       .bottom {
         display: flex;
+         cursor: pointer;
         justify-content: space-between;
         align-items: center;
         padding: 0px 8px;
+
         > span {
           line-height: 53px;
           color: #010411;

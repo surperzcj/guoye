@@ -178,7 +178,9 @@ export default {
       });
     },
     golink(link) {
-      window.open(link);
+      if (link) {
+        window.open(link);
+      }
     },
     godetail(id) {
       this.$router.push({

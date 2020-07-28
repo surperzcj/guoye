@@ -1,32 +1,32 @@
-import Vue from "vue"
-import Vuex from "vuex"
-Vue.use(Vuex)
+import Vue from 'vue';
+import Vuex from 'vuex';
+import VuexPersistence from 'vuex-persist';
 
-var state = {
-  token: ''
-}
-
-var mutations = {
-  SET_TOKEN: (state, token) => {
-    localStorage.setItem("token", token), (state.token = token);
+Vue.use(Vuex);
+const vuexLocal = new VuexPersistence({
+  storage: window.localStorage
+});
+const state = {
+  token: '',
+};
+const getters = { //实时监听state值的变化(最新状态)
+  getUserInfo(state) {
+    return state.token
   },
-
-}
-var getters = {
-
-}
-var actions = {
-  // 异步获取token
-  async getShowLook({
-    commit
-  }, token) {
-    commit("SET_TOKEN", token);
+};
+const mutations = {
+  settoken(state, id) {
+    state.token = id;
   },
+};
+const actions = {
 
-}
-export default new Vuex.Store({
+};
+const store = new Vuex.Store({
   state,
   getters,
   mutations,
   actions,
-})
+  plugins: [vuexLocal.plugin]
+});
+export default store;

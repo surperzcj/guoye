@@ -51,7 +51,6 @@ export default {
           },
         },
         {
-          id: 1,
           name: "公司概况",
           reqUrl: {
             path: "/company",
@@ -93,8 +92,11 @@ export default {
           ],
         },
         {
-          id: 1,
           name: "新闻动态",
+          reqUrl: {
+            path: "/news",
+            params: "gsyw",
+          },
           nodes: [
             {
               name: "公司要闻",
@@ -113,7 +115,6 @@ export default {
               },
             },
           ],
-          reqUrl: "/news",
         },
         {
           name: "公司业绩",
@@ -141,63 +142,63 @@ export default {
             },
           ],
         },
-        {
-          name: "员工家园",
-          reqUrl: {
-            path: "/staff",
-            params: "tzgg",
-          },
-          nodes: [
-            {
-              name: "通知公告",
-              nodes: [],
-              reqUrl: {
-                path: "/staff",
-                params: "tzgg",
-              },
-            },
-            {
-              name: "培训专栏",
-              nodes: [],
-              reqUrl: {
-                path: "/staff",
-                params: "pxzl",
-              },
-            },
-            {
-              name: "质量体系",
-              nodes: [],
-              reqUrl: {
-                path: "/staff",
-                params: "zltx",
-              },
-            },
-            {
-              name: "业务中心",
-              nodes: [],
-              reqUrl: {
-                path: "/staff",
-                params: "ywzx",
-              },
-            },
-            {
-              name: "会议纪要",
-              nodes: [],
-              reqUrl: {
-                path: "/staff",
-                params: "hyjy",
-              },
-            },
-            {
-              name: "员工风采",
-              nodes: [],
-              reqUrl: {
-                path: "/staff",
-                params: "ygfc",
-              },
-            },
-          ],
-        },
+        // {
+        //   name: "员工家园",
+        //   reqUrl: {
+        //     path: "/staff",
+        //     params: "tzgg",
+        //   },
+        //   nodes: [
+        //     {
+        //       name: "通知公告",
+        //       nodes: [],
+        //       reqUrl: {
+        //         path: "/staff",
+        //         params: "tzgg",
+        //       },
+        //     },
+        //     {
+        //       name: "培训专栏",
+        //       nodes: [],
+        //       reqUrl: {
+        //         path: "/staff",
+        //         params: "pxzl",
+        //       },
+        //     },
+        //     {
+        //       name: "质量体系",
+        //       nodes: [],
+        //       reqUrl: {
+        //         path: "/staff",
+        //         params: "zltx",
+        //       },
+        //     },
+        //     {
+        //       name: "业务中心",
+        //       nodes: [],
+        //       reqUrl: {
+        //         path: "/staff",
+        //         params: "ywzx",
+        //       },
+        //     },
+        //     {
+        //       name: "会议纪要",
+        //       nodes: [],
+        //       reqUrl: {
+        //         path: "/staff",
+        //         params: "hyjy",
+        //       },
+        //     },
+        //     {
+        //       name: "员工风采",
+        //       nodes: [],
+        //       reqUrl: {
+        //         path: "/staff",
+        //         params: "ygfc",
+        //       },
+        //     },
+        //   ],
+        // },
         {
           name: "人才招聘",
           nodes: [],

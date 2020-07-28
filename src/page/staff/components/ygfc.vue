@@ -111,6 +111,7 @@ export default {
         display: flex;
         justify-content: space-between;
         align-items: center;
+         cursor: pointer;
         padding: 0px 8px;
         > span {
           line-height: 53px;
