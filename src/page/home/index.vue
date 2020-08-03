@@ -127,6 +127,7 @@ export default {
   },
   created() {
     this.home();
+    console.log()
   },
   filters: {
     formatDates: function (value) {
@@ -201,13 +202,12 @@ export default {
     async home() {
       let data = await this.$api.home();
       if (data.msg == "success") {
-        console.log(data.data.news_list.slice(0, 1));
+        console.log(this.detail);
         this.image_url = data.data.image_url + "/";
         this.detail = data.data;
         this.news_list1 = data.data.news_list.slice(0, 1);
         this.news_list2 = data.data.news_list.slice(1, 3);
         this.news_list3 = data.data.news_list.slice(3, 6);
-        console.log(this.news_list1, this.news_list2, this.news_list3);
       }
     },
   },

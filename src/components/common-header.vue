@@ -28,10 +28,10 @@
             </div>
           </li>
         </ul>
-        <div class="islogin" v-if="!$store.state.token">
+        <!-- <div class="islogin" v-if="!$store.state.token">
           <div class="left" @click="$router.push('/login')">登录</div>
           <div class="right" @click="$router.push('/register')">注册</div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

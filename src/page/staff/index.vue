@@ -152,7 +152,8 @@ export default {
   padding: 0px 120px;
   justify-content: space-between;
   .left {
-    width: 20%;
+    // width: 20%;
+    min-width: 20%;
     border-right: 1px solid #f3f3f4;
     .title {
       > h2 {

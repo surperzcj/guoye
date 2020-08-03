@@ -14,18 +14,22 @@
             </li>
             <li>
               <span>友情链接</span>
-              <span class="lianjie" v-for="(item,index) in detail.friendly_link" :key="index" @click="golink(item.link)">{{item.title}}</span>
+              <span
+                class="lianjie"
+                v-for="(item,index) in detail.friendly_link"
+                :key="index"
+                @click="golink(item.link)"
+              >{{item.title}}</span>
               <span>邮箱 : {{detail.bottom.email}}</span>
             </li>
           </ul>
         </div>
         <div class="content_l">
-        
           <img :src="detail.image.bottom_logo" alt />
         </div>
       </div>
       <div class="ygjy" @click="goygjy">
-          <span>员工家园</span>
+        <span>员工家园</span>
       </div>
     </div>
     <div class="name">
@@ -37,32 +41,35 @@
 export default {
   data() {
     return {
-      detail:''
+      detail: "",
     };
   },
   created() {
-    this.commonality()
+    this.commonality();
   },
   methods: {
-    goygjy(){
-     this.$router.push({
-        path: '/staff',
-        query: {
-          type: 'tzgg',
-        },
-      });
-    },
-    golink(link){
-      if(link){
-         window.open(link);  
+    goygjy() {
+      if (this.$store.state.token) {
+        this.$router.push({
+          path: "/staff",
+          query: {
+            type: "tzgg",
+          },
+        });
+      } else {
+        this.$router.push("/login");
       }
-      
+    },
+    golink(link) {
+      if (link) {
+        window.open(link);
+      }
     },
     async commonality() {
       let data = await this.$api.commonality();
       if (data.msg == "success") {
         this.detail = data.data;
-        console.log(this.detail.bottom.address)
+        console.log(this.detail.bottom.address);
       }
     },
   },
@@ -130,24 +137,24 @@ export default {
     color: rgba(255, 255, 255, 0.3);
   }
 }
-.lianjie{
-    cursor: pointer;
+.lianjie {
+  cursor: pointer;
 }
-.ygjy{
+.ygjy {
   position: absolute;
   right: 0;
   top: 50%;
-  opacity: .4;
-  background:rgba(4,14,53,1);
+  opacity: 0.4;
+  background: rgba(4, 14, 53, 1);
   line-height: 40px;
   padding: 0px 32px;
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 14px;
   font-size: 14px;
-    cursor: pointer;
-  &::before{
-    content: '';
-       width: 0;
+  cursor: pointer;
+  &::before {
+    content: "";
+    width: 0;
     height: 0;
     border-top: 20px solid transparent;
     border-right: 40px solid #0b1e63;
@@ -157,6 +164,5 @@ export default {
     position: absolute;
     left: -40px;
   }
-
 }
 </style>

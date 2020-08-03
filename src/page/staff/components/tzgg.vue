@@ -112,6 +112,7 @@ export default {
   }
   .right_content {
     flex: 1;
+    position: relative;
     margin-left: 24px;
     .title {
       display: flex;
@@ -140,6 +141,9 @@ export default {
       display: flex;
       justify-content: flex-end;
       > span {
+        position: absolute;
+        right: 0;
+        bottom: 0;
         width: 64px;
         height: 24px;
         line-height: 24px;

@@ -34,6 +34,7 @@
             ></el-input>
           </el-form-item>
         </el-form>
+        <span class="ljzc" @click="$router.push('/register')">立即注册</span>
         <div class="denglu">
           <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
         </div>
@@ -76,7 +77,7 @@ export default {
         });
         this.$store.commit('settoken',data.data.token)
         this.$router.push("/home");
-        console.log(this.$store.state.token)
+        
       } else {
         this.$message({
           showClose: true,
@@ -170,5 +171,11 @@ export default {
     font-size: 16px;
     line-height: 24px;
   }
+}
+.ljzc{
+   cursor: pointer;
+   color: #2756FD;
+   font-size: 12px;
+   border-bottom: 1px solid #2756FD;
 }
 </style>
